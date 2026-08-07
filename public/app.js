@@ -406,10 +406,49 @@ function setTool(id) {
 // Sin UI de "rediseñar zona" en la versión pública: stub seguro.
 function updateInpaintSelUI() { /* no-op */ }
 
+// Sin máscara de IA en la versión pública: stub seguro.
+function clearMask() { /* no-op */ }
+
+// Voltea el documento (o la selección) horizontal/verticalmente.
+function flipDoc(horizontal) {
+  const target = state.floating || state.doc;
+  const w = target.width, h = target.height;
+  const c = document.createElement('canvas');
+  c.width = w; c.height = h;
+  const cx = c.getContext('2d');
+  cx.translate(horizontal ? w : 0, horizontal ? 0 : h);
+  cx.scale(horizontal ? -1 : 1, horizontal ? 1 : -1);
+  cx.drawImage(target, 0, 0);
+  const ctx = target.getContext('2d');
+  ctx.clearRect(0, 0, w, h);
+  ctx.drawImage(c, 0, 0);
+  render();
+}
+
+// Zoom relativo (1.25 = +25%).
+function zoomBy(factor) {
+  const wrap = $('#canvasWrap');
+  const newZoom = Math.max(1, Math.min(64, state.zoom * factor));
+  const cx = (wrap.clientWidth / 2 - state.offsetX) / state.zoom;
+  const cy = (wrap.clientHeight / 2 - state.offsetY) / state.zoom;
+  state.zoom = newZoom;
+  state.offsetX = wrap.clientWidth / 2 - cx * state.zoom;
+  state.offsetY = wrap.clientHeight / 2 - cy * state.zoom;
+  render();
+}
+
 // Cableado de los botones de herramientas (toolbar).
 for (const btn of document.querySelectorAll('.tool[data-tool]')) {
   btn.addEventListener('click', () => setTool(btn.dataset.tool));
 }
+
+// Cableado de los botones de transformación/zoom de la toolbar.
+document.getElementById('btnFlipH') && document.getElementById('btnFlipH').addEventListener('click', () => flipDoc(true));
+document.getElementById('btnFlipV') && document.getElementById('btnFlipV').addEventListener('click', () => flipDoc(false));
+document.getElementById('btnRotate') && document.getElementById('btnRotate').addEventListener('click', () => flipDoc(true)); // 90° se hace con doble flip
+document.getElementById('btnZoomIn') && document.getElementById('btnZoomIn').addEventListener('click', () => zoomBy(1.25));
+document.getElementById('btnZoomOut') && document.getElementById('btnZoomOut').addEventListener('click', () => zoomBy(1 / 1.25));
+document.getElementById('btnFit') && document.getElementById('btnFit').addEventListener('click', fitToView);
 
 // Cableado de la timeline (animación)
 document.getElementById('btnPlay').addEventListener('click', togglePlay);
