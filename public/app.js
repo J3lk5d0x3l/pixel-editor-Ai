@@ -388,6 +388,29 @@ function renderFrames() {
   });
 }
 
+// Cambia la herramienta activa y marca el botón correspondiente en la toolbar.
+function setTool(id) {
+  const valid = new Set(['pencil','eraser','fill','picker','line','rect','ellipse','gradient','pan','select','lasso','wand']);
+  if (!valid.has(id)) return;
+  state.prevTool = state.tool;
+  state.tool = id;
+  for (const btn of document.querySelectorAll('.tool[data-tool]')) {
+    btn.classList.toggle('active', btn.dataset.tool === id);
+  }
+  // Cursor por defecto (algunas herramientas lo sobreescriben en mousedown).
+  const view = state.view;
+  if (view) view.style.cursor = (id === 'pan') ? 'grab' : (id === 'picker' ? 'crosshair' : 'crosshair');
+  updateInpaintSelUI();
+}
+
+// Sin UI de "rediseñar zona" en la versión pública: stub seguro.
+function updateInpaintSelUI() { /* no-op */ }
+
+// Cableado de los botones de herramientas (toolbar).
+for (const btn of document.querySelectorAll('.tool[data-tool]')) {
+  btn.addEventListener('click', () => setTool(btn.dataset.tool));
+}
+
 // Cableado de la timeline (animación)
 document.getElementById('btnPlay').addEventListener('click', togglePlay);
 document.getElementById('btnFrameAdd').addEventListener('click', () => addFrame());
@@ -2120,7 +2143,7 @@ async function init() {
   try { await loadTree(); }
   catch (err) { toast('No se pudo leer el pack: ' + err.message, 'err', 6000); }
   await restoreState();
-  refreshBalance();
+  // refreshBalance(); // sin IA en la versión pública
   renderLayersPanel(); renderFrames(); // estado inicial de capas y timeline
   updateInpaintSelUI(); // botón "rediseñar zona" arranca deshabilitado hasta que haya selección
 }
