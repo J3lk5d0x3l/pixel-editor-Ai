@@ -1,0 +1,14 @@
+{
+  "name": "pixel-resourcepack-editor",
+  "version": "1.0.0",
+  "private": true,
+  "description": "Editor web local de pixel art para resourcepacks de Minecraft. Lee y escribe PNGs in-place, gestiona fuentes/mcmeta y empaqueta el pack a .zip.",
+  "type": "module",
+  "scripts": {
+    "start": "node server.js",
+    "dev": "node server.js"
+  },
+  "engines": {
+    "node": ">=20"
+  }
+}

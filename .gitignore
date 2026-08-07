@@ -1,0 +1,57 @@
+# ---------- Secretos y datos personales — NUNCA versionar ----------
+# (cada usuario copia config.example.json a config.json; contiene rutas locales)
+apikey.txt
+settings.local.json
+config.json
+opencode.json
+pl_openapi.json
+
+# ---------- Dependencias ----------
+node_modules/
+package-lock.json
+
+# ---------- Salidas y artefactos de build ----------
+backups/
+backup_v1/
+out/
+aprobados/
+nighty_emojis/
+*.zip
+
+# ---------- Scripts personales del autor original (prefijados con _) ----------
+_*.mjs
+_*.js
+_*.cjs
+_*.py
+_*.txt
+
+# ---------- Capturas y temporales ----------
+screenshot.png
+desktop.png
+temp_*.png
+temp_*.json
+_*.png
+_result*.png
+_recovered.png
+_canvas_view.png
+
+# ---------- Carpetas de agentes externos (no son parte del editor) ----------
+.opencode/
+.claude/
+.mcp.json
+
+# ---------- Logs ----------
+*.log
+
+# ---------- Editor ----------
+.vscode/
+.idea/
+.DS_Store
+Thumbs.db
+
+# ---------- Documentos personales del autor original ----------
+AGENTS.md
+public/branding.html
+public/branding2.html
+public/claude_tools.js
+public/crystal.png

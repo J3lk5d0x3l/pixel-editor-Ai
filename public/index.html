@@ -1,0 +1,185 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Pixel Editor · Resourcepack</title>
+  <link rel="stylesheet" href="/styles.css" />
+</head>
+<body>
+  <!-- Sprite de iconos (Lucide — ISC/MIT) -->
+  <svg xmlns="http://www.w3.org/2000/svg" style="display:none" aria-hidden="true"><defs><symbol id="i-logo" viewBox="0 0 24 24"><rect x="3" y="3" width="7.5" height="7.5" rx="1.2"/><rect x="13.5" y="3" width="7.5" height="7.5" rx="1.2"/><rect x="3" y="13.5" width="7.5" height="7.5" rx="1.2"/><rect x="13.5" y="13.5" width="7.5" height="7.5" rx="1.2"/></symbol><symbol id="i-pencil" viewBox="0 0 24 24"><path d="M21.174 6.812a1 1 0 0 0-3.986-3.987L3.842 16.174a2 2 0 0 0-.5.83l-1.321 4.352a.5.5 0 0 0 .623.622l4.353-1.32a2 2 0 0 0 .83-.497z"/><path d="m15 5 4 4"/></symbol><symbol id="i-eraser" viewBox="0 0 24 24"><path d="M21 21H8a2 2 0 0 1-1.42-.587l-3.994-3.999a2 2 0 0 1 0-2.828l10-10a2 2 0 0 1 2.829 0l5.999 6a2 2 0 0 1 0 2.828L12.834 21"/><path d="m5.082 11.09 8.828 8.828"/></symbol><symbol id="i-fill" viewBox="0 0 24 24"><path d="M11 7 6 2"/><path d="M18.992 12H2.041"/><path d="M21.145 18.38A3.34 3.34 0 0 1 20 16.5a3.3 3.3 0 0 1-1.145 1.88c-.575.46-.855 1.02-.855 1.595A2 2 0 0 0 20 22a2 2 0 0 0 2-2.025c0-.58-.285-1.13-.855-1.595"/><path d="m8.5 4.5 2.148-2.148a1.205 1.205 0 0 1 1.704 0l7.296 7.296a1.205 1.205 0 0 1 0 1.704l-7.592 7.592a3.615 3.615 0 0 1-5.112 0l-3.888-3.888a3.615 3.615 0 0 1 0-5.112L5.67 7.33"/></symbol><symbol id="i-picker" viewBox="0 0 24 24"><path d="m12 9-8.414 8.414A2 2 0 0 0 3 18.828v1.344a2 2 0 0 1-.586 1.414A2 2 0 0 1 3.828 21h1.344a2 2 0 0 0 1.414-.586L15 12"/><path d="m18 9 .4.4a1 1 0 1 1-3 3l-3.8-3.8a1 1 0 1 1 3-3l.4.4 3.4-3.4a1 1 0 1 1 3 3z"/><path d="m2 22 .414-.414"/></symbol><symbol id="i-line" viewBox="0 0 24 24"><path d="M22 2 2 22"/></symbol><symbol id="i-rect" viewBox="0 0 24 24"><rect width="18" height="18" x="3" y="3" rx="2"/></symbol><symbol id="i-pan" viewBox="0 0 24 24"><path d="M18 11V6a2 2 0 0 0-2-2 2 2 0 0 0-2 2"/><path d="M14 10V4a2 2 0 0 0-2-2 2 2 0 0 0-2 2v2"/><path d="M10 10.5V6a2 2 0 0 0-2-2 2 2 0 0 0-2 2v8"/><path d="M18 8a2 2 0 1 1 4 0v6a8 8 0 0 1-8 8h-2c-2.8 0-4.5-.86-5.99-2.34l-3.6-3.6a2 2 0 0 1 2.83-2.82L7 15"/></symbol><symbol id="i-undo" viewBox="0 0 24 24"><path d="M9 14 4 9l5-5"/><path d="M4 9h10.5a5.5 5.5 0 0 1 5.5 5.5a5.5 5.5 0 0 1-5.5 5.5H11"/></symbol><symbol id="i-redo" viewBox="0 0 24 24"><path d="m15 14 5-5-5-5"/><path d="M20 9H9.5A5.5 5.5 0 0 0 4 14.5A5.5 5.5 0 0 0 9.5 20H13"/></symbol><symbol id="i-grid" viewBox="0 0 24 24"><rect width="18" height="18" x="3" y="3" rx="2"/><path d="M3 9h18"/><path d="M3 15h18"/><path d="M9 3v18"/><path d="M15 3v18"/></symbol><symbol id="i-fit" viewBox="0 0 24 24"><path d="M8 3H5a2 2 0 0 0-2 2v3"/><path d="M21 8V5a2 2 0 0 0-2-2h-3"/><path d="M3 16v3a2 2 0 0 0 2 2h3"/><path d="M16 21h3a2 2 0 0 0 2-2v-3"/></symbol><symbol id="i-save" viewBox="0 0 24 24"><path d="M15.2 3a2 2 0 0 1 1.4.6l3.8 3.8a2 2 0 0 1 .6 1.4V19a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2V5a2 2 0 0 1 2-2z"/><path d="M17 21v-7a1 1 0 0 0-1-1H8a1 1 0 0 0-1 1v7"/><path d="M7 3v4a1 1 0 0 0 1 1h7"/></symbol><symbol id="i-zip" viewBox="0 0 24 24"><path d="M11 21.73a2 2 0 0 0 2 0l7-4A2 2 0 0 0 21 16V8a2 2 0 0 0-1-1.73l-7-4a2 2 0 0 0-2 0l-7 4A2 2 0 0 0 3 8v8a2 2 0 0 0 1 1.73z"/><path d="M12 22V12"/><polyline points="3.29 7 12 12 20.71 7"/><path d="m7.5 4.27 9 5.15"/></symbol><symbol id="i-backup" viewBox="0 0 24 24"><rect width="20" height="5" x="2" y="3" rx="1"/><path d="M4 8v11a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V8"/><path d="M10 12h4"/></symbol><symbol id="i-folder" viewBox="0 0 24 24"><path d="M20 20a2 2 0 0 0 2-2V8a2 2 0 0 0-2-2h-7.9a2 2 0 0 1-1.69-.9L9.6 3.9A2 2 0 0 0 7.93 3H4a2 2 0 0 0-2 2v13a2 2 0 0 0 2 2Z"/></symbol><symbol id="i-search" viewBox="0 0 24 24"><path d="m21 21-4.34-4.34"/><circle cx="11" cy="11" r="8"/></symbol><symbol id="i-trash" viewBox="0 0 24 24"><path d="M10 11v6"/><path d="M14 11v6"/><path d="M19 6v14a2 2 0 0 1-2 2H7a2 2 0 0 1-2-2V6"/><path d="M3 6h18"/><path d="M8 6V4a2 2 0 0 1 2-2h4a2 2 0 0 1 2 2v2"/></symbol><symbol id="i-fliph" viewBox="0 0 24 24"><path d="m3 7 5 5-5 5V7"/><path d="m21 7-5 5 5 5V7"/><path d="M12 20v2"/><path d="M12 14v2"/><path d="M12 8v2"/><path d="M12 2v2"/></symbol><symbol id="i-flipv" viewBox="0 0 24 24"><path d="m17 3-5 5-5-5h10"/><path d="m17 21-5-5-5 5h10"/><path d="M4 12H2"/><path d="M10 12H8"/><path d="M16 12h-2"/><path d="M22 12h-2"/></symbol><symbol id="i-rotate" viewBox="0 0 24 24"><path d="M21 12a9 9 0 1 1-9-9c2.52 0 4.93 1 6.74 2.74L21 8"/><path d="M21 3v5h-5"/></symbol><symbol id="i-ellipse" viewBox="0 0 24 24"><circle cx="12" cy="12" r="10"/></symbol><symbol id="i-zoomin" viewBox="0 0 24 24"><circle cx="11" cy="11" r="8"/><line x1="21" x2="16.65" y1="21" y2="16.65"/><line x1="11" x2="11" y1="8" y2="14"/><line x1="8" x2="14" y1="11" y2="11"/></symbol><symbol id="i-zoomout" viewBox="0 0 24 24"><circle cx="11" cy="11" r="8"/><line x1="21" x2="16.65" y1="21" y2="16.65"/><line x1="8" x2="14" y1="11" y2="11"/></symbol><symbol id="i-symmetry" viewBox="0 0 24 24"><path d="M12 3v18" stroke-dasharray="2 2"/><path d="M8 8 4 12l4 4"/><path d="m16 8 4 4-4 4"/></symbol><symbol id="i-select" viewBox="0 0 24 24"><rect x="3" y="3" width="18" height="18" rx="1" stroke-dasharray="3 3"/></symbol><symbol id="i-gear" viewBox="0 0 24 24"><path d="M12.22 2h-.44a2 2 0 0 0-2 2v.18a2 2 0 0 1-1 1.73l-.43.25a2 2 0 0 1-2 0l-.15-.08a2 2 0 0 0-2.73.73l-.22.38a2 2 0 0 0 .73 2.73l.15.1a2 2 0 0 1 1 1.72v.51a2 2 0 0 1-1 1.74l-.15.09a2 2 0 0 0-.73 2.73l.22.38a2 2 0 0 0 2.73.73l.15-.08a2 2 0 0 1 2 0l.43.25a2 2 0 0 1 1 1.73V20a2 2 0 0 0 2 2h.44a2 2 0 0 0 2-2v-.18a2 2 0 0 1 1-1.73l.43-.25a2 2 0 0 1 2 0l.15.08a2 2 0 0 0 2.73-.73l.22-.39a2 2 0 0 0-.73-2.73l-.15-.08a2 2 0 0 1-1-1.74v-.5a2 2 0 0 1 1-1.74l.15-.09a2 2 0 0 0 .73-2.73l-.22-.38a2 2 0 0 0-2.73-.73l-.15.08a2 2 0 0 1-2 0l-.43-.25a2 2 0 0 1-1-1.73V4a2 2 0 0 0-2-2z"/><circle cx="12" cy="12" r="3"/></symbol><symbol id="i-plus" viewBox="0 0 24 24"><path d="M5 12h14"/><path d="M12 5v14"/></symbol><symbol id="i-copy" viewBox="0 0 24 24"><rect width="14" height="14" x="8" y="8" rx="2"/><path d="M4 16c-1.1 0-2-.9-2-2V4c0-1.1.9-2 2-2h10c1.1 0 2 .9 2 2"/></symbol><symbol id="i-up" viewBox="0 0 24 24"><path d="m18 15-6-6-6 6"/></symbol><symbol id="i-down" viewBox="0 0 24 24"><path d="m6 9 6 6 6-6"/></symbol><symbol id="i-eye" viewBox="0 0 24 24"><path d="M2.062 12.348a1 1 0 0 1 0-.696 10.75 10.75 0 0 1 19.876 0 1 1 0 0 1 0 .696 10.75 10.75 0 0 1-19.876 0"/><circle cx="12" cy="12" r="3"/></symbol><symbol id="i-play" viewBox="0 0 24 24"><polygon points="6 3 20 12 6 21 6 3"/></symbol><symbol id="i-gradient" viewBox="0 0 24 24"><rect width="18" height="18" x="3" y="3" rx="2"/><path d="M7 17 17 7"/><path d="M11 17 17 11"/><path d="M15 17 17 15"/></symbol><symbol id="i-swap" viewBox="0 0 24 24"><path d="M7 4v16m0 0-4-4m4 4 4-4"/><path d="M17 20V4m0 0-4 4m4-4 4 4"/></symbol><symbol id="i-lasso" viewBox="0 0 24 24"><path d="M7 22a5 5 0 0 1-2-4"/><path d="M3.3 14A6.8 6.8 0 0 1 2 10c0-4.4 4.5-8 10-8s10 3.6 10 8-4.5 8-10 8a12 12 0 0 1-5-1"/><path d="M5 18a2 2 0 1 0 0-4 2 2 0 0 0 0 4"/></symbol><symbol id="i-magicwand" viewBox="0 0 24 24"><path d="M15 4V2M15 16v-2M8 9h2M20 9h2M17.8 11.8 19 13M17.8 6.2 19 5M3 21l9-9M12.2 6.2 11 5"/></symbol><symbol id="i-chevron-left" viewBox="0 0 24 24"><path d="m15 18-6-6 6-6"/></symbol><symbol id="i-chevron-right" viewBox="0 0 24 24"><path d="m9 18 6-6-6-6"/></symbol></defs></svg>
+
+  <!-- ===== Barra superior ===== -->
+  <header id="topbar">
+    <button id="btnDrawerLeft" class="btn ghost drawer-btn" aria-label="Mostrar lista de texturas" aria-expanded="false" title="Texturas"><svg class="ico"><use href="#i-folder"/></svg></button>
+    <div class="brand">
+      <svg class="ico logo"><use href="#i-logo"/></svg>
+      <span class="title">Pixel Editor</span>
+    </div>
+    <div class="topbar-pack" id="packPath" title="Carpeta del resourcepack">—</div>
+    <div class="topbar-actions">
+      <button id="btnBackup" class="btn ghost" title="Crear copia de seguridad (.zip) del pack"><svg class="ico"><use href="#i-backup"/></svg>Backup</button>
+      <button id="btnSave" class="btn" disabled title="Guardar la imagen actual en su ruta (Ctrl+S)"><svg class="ico"><use href="#i-save"/></svg>Guardar</button>
+      <button id="btnExport" class="btn primary" title="Empaquetar todo el pack a .zip"><svg class="ico"><use href="#i-zip"/></svg>Exportar ZIP</button>
+      <button id="btnDrawerRight" class="btn ghost drawer-btn" aria-label="Mostrar color" aria-expanded="false" title="Color"><svg class="ico"><use href="#i-picker"/></svg></button>
+    </div>
+  </header>
+  <div id="drawerBackdrop" class="drawer-backdrop hidden"></div>
+
+  <main id="layout">
+    <!-- ===== Panel izquierdo: árbol ===== -->
+    <aside id="sidebar">
+      <div class="sidebar-head">
+        <button id="btnCollapseLeft" class="collapse-btn" title="Ocultar panel de texturas (Ctrl+B)" aria-label="Ocultar texturas"><svg class="ico"><use href="#i-chevron-left"/></svg></button>
+        <div class="search-wrap">
+          <svg class="ico search-ico"><use href="#i-search"/></svg>
+          <input id="search" type="text" placeholder="Buscar textura…" autocomplete="off" />
+        </div>
+        <div class="tree-stats" id="treeStats">0 archivos</div>
+      </div>
+      <div id="tree" class="tree"></div>
+    </aside>
+    <button id="railLeft" class="rail rail-left" title="Mostrar texturas (Ctrl+B)" aria-label="Mostrar texturas"><svg class="ico"><use href="#i-folder"/></svg></button>
+
+    <div class="resize-handle" id="handleLeft"></div>
+
+    <!-- ===== Centro: editor ===== -->
+    <section id="editor">
+      <div id="toolbar">
+        <button class="tool" data-tool="pencil" title="Lápiz (B)"><svg class="ico"><use href="#i-pencil"/></svg></button>
+        <button class="tool" data-tool="eraser" title="Borrador (E)"><svg class="ico"><use href="#i-eraser"/></svg></button>
+        <button class="tool" data-tool="fill" title="Bote de relleno (G)"><svg class="ico"><use href="#i-fill"/></svg></button>
+        <button class="tool" data-tool="picker" title="Cuentagotas (I) · Alt+clic con cualquier herramienta"><svg class="ico"><use href="#i-picker"/></svg></button>
+        <button class="tool" data-tool="line" title="Línea (L) · Shift = recta"><svg class="ico"><use href="#i-line"/></svg></button>
+        <button class="tool" data-tool="rect" title="Rectángulo (R)"><svg class="ico"><use href="#i-rect"/></svg></button>
+        <button class="tool" data-tool="ellipse" title="Elipse (O)"><svg class="ico"><use href="#i-ellipse"/></svg></button>
+        <button class="tool" data-tool="gradient" title="Degradado (D) — arrastra del color primario al secundario · Shift = recto"><svg class="ico"><use href="#i-gradient"/></svg></button>
+        <button class="tool" data-tool="pan" title="Mover vista (H · espacio)"><svg class="ico"><use href="#i-pan"/></svg></button>
+        <button class="tool" data-tool="select" title="Selección rectangular (M) — mover / Supr borra / Ctrl+D duplica"><svg class="ico"><use href="#i-select"/></svg></button>
+        <button class="tool" data-tool="lasso" title="Lazo (Q) — selección a mano alzada"><svg class="ico"><use href="#i-lasso"/></svg></button>
+        <button class="tool" data-tool="wand" title="Varita mágica (W) — selecciona por color · Shift suma"><svg class="ico"><use href="#i-magicwand"/></svg></button>
+        <span class="sep"></span>
+        <label class="size-label">Pincel <input id="brushSize" type="number" min="1" max="16" value="1" /></label>
+        <label class="check-tool" title="Rellenar rectángulo / elipse"><input type="checkbox" id="fillShape" /> Relleno</label>
+        <label class="check-tool" title="Pixel-perfect: limpia píxeles dobles en curvas (lápiz)"><input type="checkbox" id="pixelPerfect" checked /> PP</label>
+        <button class="tool" id="btnSymmetry" title="Simetría espejo (eje vertical)"><svg class="ico"><use href="#i-symmetry"/></svg></button>
+        <span class="sep"></span>
+        <button class="tool" id="btnFlipH" title="Voltear horizontal (la selección si la hay, si no todo)"><svg class="ico"><use href="#i-fliph"/></svg></button>
+        <button class="tool" id="btnFlipV" title="Voltear vertical (la selección si la hay, si no todo)"><svg class="ico"><use href="#i-flipv"/></svg></button>
+        <button class="tool" id="btnRotate" title="Rotar 90° (la selección si la hay, si no todo)"><svg class="ico"><use href="#i-rotate"/></svg></button>
+        <span class="sep"></span>
+        <button class="tool" id="btnUndo" title="Deshacer (Ctrl+Z)"><svg class="ico"><use href="#i-undo"/></svg></button>
+        <button class="tool" id="btnRedo" title="Rehacer (Ctrl+Y)"><svg class="ico"><use href="#i-redo"/></svg></button>
+        <span class="sep"></span>
+        <button class="tool" id="btnZoomOut" title="Alejar (−)"><svg class="ico"><use href="#i-zoomout"/></svg></button>
+        <button class="tool" id="btnZoomIn" title="Acercar (+)"><svg class="ico"><use href="#i-zoomin"/></svg></button>
+        <button class="tool" id="btnGrid" title="Mostrar/ocultar cuadrícula"><svg class="ico"><use href="#i-grid"/></svg></button>
+        <button class="tool" id="btnFit" title="Ajustar a la vista"><svg class="ico"><use href="#i-fit"/></svg></button>
+      </div>
+
+      <div id="ctxBar" class="ctx-bar" style="display:none"></div>
+
+      <div id="canvasWrap">
+        <canvas id="view"></canvas>
+        <div id="noFile" class="no-file">
+          <div class="no-file-inner">
+            <svg class="ico big-ico"><use href="#i-logo"/></svg>
+            <p>Elige una textura del panel izquierdo para empezar a editar.</p>
+          </div>
+        </div>
+      </div>
+
+      <div id="timeline">
+        <div class="tl-controls">
+          <button id="btnPlay" class="tl-btn" title="Reproducir / pausar"><svg class="ico"><use href="#i-play"/></svg></button>
+          <button id="btnFrameAdd" class="tl-btn" title="Añadir fotograma en blanco"><svg class="ico"><use href="#i-plus"/></svg></button>
+          <button id="btnFrameDup" class="tl-btn" title="Duplicar fotograma actual"><svg class="ico"><use href="#i-copy"/></svg></button>
+          <button id="btnFrameDel" class="tl-btn danger" title="Borrar fotograma"><svg class="ico"><use href="#i-trash"/></svg></button>
+          <button id="btnOnion" class="tl-btn" title="Papel cebolla (ver fotograma anterior tenue)"><svg class="ico"><use href="#i-onion"/></svg></button>
+          <label class="tl-fps" title="Fotogramas por segundo">FPS <input id="fpsInput" type="number" min="1" max="60" value="8" /></label>
+        </div>
+        <div id="frameStrip" class="tl-strip"></div>
+      </div>
+
+      <div id="statusbar">
+        <span id="stCoord">—</span>
+        <span id="stSize">—</span>
+        <span id="stZoom">100%</span>
+        <span id="stPath" class="st-path"></span>
+      </div>
+    </section>
+
+    <div class="resize-handle" id="handleRight"></div>
+
+    <!-- ===== Panel derecho: color ===== -->
+    <aside id="rightpanel">
+      <button id="btnCollapseRight" class="collapse-btn collapse-right" title="Ocultar panel de color (Ctrl+J)" aria-label="Ocultar color"><svg class="ico"><use href="#i-chevron-right"/></svg></button>
+      <div class="panel-block" data-sec="color">
+        <div class="panel-title">Color</div>
+        <div class="color-row">
+          <div class="fgbg" title="Primario (FG) y secundario (BG). Al dibujar, el clic derecho usa el secundario.">
+            <input type="color" id="colorPicker" class="fgbg-input fg" value="#ffffff" title="Color primario (FG) — clic izquierdo" />
+            <input type="color" id="colorPicker2" class="fgbg-input bg" value="#000000" title="Color secundario (BG) — clic derecho" />
+            <button class="fgbg-swap" id="btnSwapColors" title="Intercambiar primario/secundario"><svg class="ico"><use href="#i-swap"/></svg></button>
+          </div>
+          <div class="swatch-current" id="currentSwatch" title="Primario con su alfa"></div>
+          <label class="alpha-label">Alfa <input id="alpha" type="range" min="0" max="255" value="255" /></label>
+        </div>
+        <div id="palette" class="palette"></div>
+        <button id="btnExtract" class="btn ghost small">Extraer paleta de la imagen</button>
+      </div>
+
+      <div class="panel-block" data-sec="layers">
+        <div class="panel-title layers-title">
+          <span>Capas</span>
+          <span class="layers-tools">
+            <button id="btnLayerAdd" class="layer-act" title="Nueva capa"><svg class="ico"><use href="#i-plus"/></svg></button>
+            <button id="btnLayerDup" class="layer-act" title="Duplicar capa"><svg class="ico"><use href="#i-copy"/></svg></button>
+            <button id="btnLayerUp" class="layer-act" title="Subir capa"><svg class="ico"><use href="#i-up"/></svg></button>
+            <button id="btnLayerDown" class="layer-act" title="Bajar capa"><svg class="ico"><use href="#i-down"/></svg></button>
+            <button id="btnLayerDel" class="layer-act danger" title="Borrar capa"><svg class="ico"><use href="#i-trash"/></svg></button>
+          </span>
+        </div>
+        <div id="layerList" class="layer-list"></div>
+        <label class="layer-opacity">Opacidad <input id="layerOpacity" type="range" min="0" max="100" value="100" /></label>
+      </div>
+    </aside>
+    <button id="railRight" class="rail rail-right" title="Mostrar color (Ctrl+J)" aria-label="Mostrar color"><svg class="ico"><use href="#i-picker"/></svg></button>
+  </main>
+
+  <div id="toast" class="toast hidden"></div>
+  <div id="ctxMenu" class="ctx-menu hidden"></div>
+
+  <!-- Paleta de comandos (Ctrl+K) -->
+  <div id="cmdPalette" class="modal hidden cmd-modal">
+    <div class="cmd-box">
+      <div class="cmd-search">
+        <svg class="ico"><use href="#i-search"/></svg>
+        <input id="cmdInput" type="text" placeholder="Buscar comando o textura…" autocomplete="off" spellcheck="false" />
+      </div>
+      <div id="cmdList" class="cmd-list"></div>
+      <div class="cmd-foot"><span><b>↑↓</b> moverse&nbsp;·&nbsp;<b>↵</b> ejecutar&nbsp;·&nbsp;<b>Esc</b> cerrar</span></div>
+    </div>
+  </div>
+
+  <!-- Proyectos: recientes + cambiar de pack -->
+  <div id="projectsModal" class="modal hidden">
+    <div class="modal-box">
+      <div class="modal-title">Proyectos</div>
+      <p class="hint">Cambia entre carpetas de resourcepack. Cada proyecto recuerda dónde lo dejaste.</p>
+      <div class="proj-list" id="projList"></div>
+      <label>Carpeta del resourcepack (ruta absoluta, descomprimida)
+        <input id="projPath" type="text" placeholder="C:\\…\\resourcepack" spellcheck="false" autocomplete="off" />
+      </label>
+      <div id="projStatus" class="ai-status"></div>
+      <div class="modal-actions">
+        <button id="projOpen" class="btn primary">Abrir</button>
+        <button id="projCancel" class="btn ghost">Cancelar</button>
+      </div>
+    </div>
+  </div>
+
+  <script src="/app.js"></script>
+</body>
+</html>
